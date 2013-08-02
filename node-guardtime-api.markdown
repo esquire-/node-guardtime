@@ -506,36 +506,36 @@ The following functions are internal to TimeSignature and are used by the Guardt
 
 ---
 
-### `Buffer request = timesignature.composeExtendingRequest()`
+###### `Buffer request = timesignature.composeExtendingRequest()`
 Creates a request data blob to be sent to the Verification service.
 
-### `Object signature_properties = timesignature.verify()`
+###### `Object signature_properties = timesignature.verify()`
 Verifies the internal consistency of the signature token and returns structure with signature properties. See `guardtime.verify()`. Throws an exception in case of error or 'broken' signature.
 
-### `Boolean earlier = timesignature.isEarlierThan(TimeSignature ts2)`
+###### `Boolean earlier = timesignature.isEarlierThan(TimeSignature ts2)`
 Compares two signature tokens, returns True if encapsulated token is _provably_ older than one provided as an argument. False otherwise.
 
-### `String s = timesignature.getSignerName()`
+###### `String s = timesignature.getSignerName()`
 Returns signer's identity as ':' delimited hierarchial list of responsible authenticators.
 If the token does not contain an identity then an empty string ('') is returned.
 
-### `Boolean extended = timesignature.isExtended()`
+###### `Boolean extended = timesignature.isExtended()`
 Returns True if timesignature token has all missing bits of hash-chain embedded for offline 
 verification. False otherwise.
 
-### `String algo_name = timesignature.getHashAlgorithm()`
+###### `String algo_name = timesignature.getHashAlgorithm()`
 Returns OpenSSL-style hash algorithm name. Necessary for verification - data has to be hashed with the same algorithm for comparison.
 
-### `Integer checks_done = timesignature.verifyHash(hash, String algo)`
+###### `Integer checks_done = timesignature.verifyHash(hash, String algo)`
 Compares given hash to hash in signature token; only valid if hash algorithms are the same.
 Returns a bitfield with verification information, constructed in the same format as above.
 *Note* that validation of the return value is unnecessary, it is included for historical reasons.
 
-### `Boolean ok = timesignature.extend(response)`
+###### `Boolean ok = timesignature.extend(response)`
 Creates 'extended' version of TimeSignature token by including missing bits of the hash chain.
 Input: Buffer or String with verification service response; returns True or throws an Exception.
 
-### 'static' functions for internal use:
+###### 'static' functions for internal use:
 
 `Buffer request = TimeSignature.composeRequest(hash, String hashalgorithm)`
 Creates request data to be sent to signing service. Input: binary hash (Buffer or String) and hash algorithm name.
