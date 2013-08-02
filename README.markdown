@@ -1,20 +1,21 @@
-# API to access GuardTime services.
+# Node.js API for Guardtime Services
 
+## Usage:
 
-Includes GuardTime C API in subdirectory libgt-x.y
+Include Guardtime C API in subdirectory `libgt-x.y`, where x and y are major and minor version.
 
-How to build:
+To build:
 
-    npm install .
-    npm link
-or 
+  npm install .
+  npm link
 
-    node-gyp rebuild 
+or
 
+  node-gyp rebuild
 
-Hello world:
+Hello world with Guardtime:
 
-    var gt = require('guardtime');
+  var gt = require('guardtime');
 
     gt.sign('Hello world!', function(err, ts) {
       if (err)
@@ -26,21 +27,19 @@ Hello world:
       });
     });
 
-For API documentation please refer to
-[node-guardtime-api.markdown](https://github.com/ristik/node-guardtime/blob/master/node-guardtime-api.markdown)
+For API documentation please refer to [node-guardtime-api.markdown](https://github.com/esquire-/node-guardtime/blob/master/node-guardtime-api.markdown)
 
-For more information about the GuardTime Keyless Signature service please have a look at
-http://www.guardtime.com/signatures/technology-overview
+## Compatability
+Requires Node.js >= 0.6.0
+This software has not been tested with Windows
 
-As You are already here - this is the essence:
-GuardTime service adds hash of your doc to a giant hash tree with globally unique
-root value; and regularily publishes this root value in widely witnessed media.
-This allows you to prove that your document did exist at certain point of time, you
-used certain service endpoint, and this document was not modified ever after.
+## What is Guardtime?
 
-Needs Node.JS >= 0.6.0; Windows is not tested.
+Guardtime offers a web-scale digital signature system for electronic data that uses only hash function based cryptography, creating a Keyless Signature Infrastructure. The main innovations are a distributed delivery infrastructure, which is designed for scale, and the removal of the need to rely on cryptographic keys for signature verification.
 
-[![build status](https://secure.travis-ci.org/ristik/node-guardtime.png)](http://travis-ci.org/ristik/node-guardtime)
+Keyless Signatures are a combination of hash function based server-side signatures and hash-linking based digital timestamping, delivered using a distributed and hierarchical infrastructure. The digital timestamp component of the service is officially certified and Guardtime is accredited as a signature authority by the European Union.
+
+For more information, please see the [Guardtime Technology Overview](http://www.guardtime.com/signatures/technology-overview)
 
 ---
 Published under Apache license v. 2.0.
