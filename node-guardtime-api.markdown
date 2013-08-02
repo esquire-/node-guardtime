@@ -225,6 +225,7 @@ gt.signHash(hash, 'SHA256', function(err, token) {
   //Record the token
   arbitraryDb.putBlob(id, token.getContent());
 });
+```
 
 ----
 
@@ -275,6 +276,7 @@ gt.verifyFile('/path/to/file', token, function(err, result, properties) {
   console.log('Signed by ' + properties.location_id + ' at ' + properties.registered_time);
   //A full list of property values is included in this document
 });
+```
 
 ----
 
@@ -369,6 +371,7 @@ gt.load('/path/to/file', function(err, token) {
     console.log('Signed at: ' + properties.registered_time);
   });
 });
+```
 
 ----
 
