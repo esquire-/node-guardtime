@@ -15,7 +15,7 @@ or
 
 Hello world with Guardtime:
 
-```node
+```javascript
   var gt = require('guardtime');
 
   gt.sign('Hello world!', function(err, ts) {
