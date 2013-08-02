@@ -480,6 +480,7 @@ var token = ; //Get a token
 console.log('Signed at: ' + token.getRegisteredTime());
 ```
 
+
 ----
 
 <a name="other-functions" />
