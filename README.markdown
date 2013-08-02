@@ -2,7 +2,7 @@
 
 ## Usage:
 
-Include Guardtime C API in subdirectory `libgt-x.y`, where x and y are major and minor version.
+Include Guardtime C API in subdirectory `libgt-x.y`, where x and y are major and minor version numbers.
 
 To build:
 
@@ -15,6 +15,7 @@ or
 
 Hello world with Guardtime:
 
+    ```node
     var gt = require('guardtime');
 
     gt.sign('Hello world!', function(err, ts) {
@@ -26,11 +27,13 @@ Hello world with Guardtime:
         console.log('All ok; signed by ' + props.location_name + ' at ' + props.registered_time);
       });
     });
+    ```
 
-For API documentation please refer to [node-guardtime-api.markdown](https://github.com/esquire-/node-guardtime/blob/master/node-guardtime-api.markdown)
+For API documentation please refer to the [API Documentation](https://github.com/esquire-/node-guardtime/blob/master/node-guardtime-api.markdown)
 
 ## Compatability
 Requires Node.js >= 0.6.0
+
 This software has not been tested with Windows
 
 ## What is Guardtime?
@@ -43,4 +46,5 @@ For more information, please see the [Guardtime Technology Overview](http://www.
 
 ---
 Published under Apache license v. 2.0.
+
 Copyright GuardTime AS 2010-2013
