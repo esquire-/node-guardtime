@@ -6,16 +6,16 @@ Include Guardtime C API in subdirectory `libgt-x.y`, where x and y are major and
 
 To build:
 
-  npm install .
-  npm link
+    npm install .
+    npm link
 
 or
 
-  node-gyp rebuild
+    node-gyp rebuild
 
 Hello world with Guardtime:
 
-  var gt = require('guardtime');
+    var gt = require('guardtime');
 
     gt.sign('Hello world!', function(err, ts) {
       if (err)

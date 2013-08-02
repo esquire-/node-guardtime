@@ -40,26 +40,26 @@ This module is split into two classes:
 
 <h2 id="basic_usage">Basic Usage:</h2>
 
-  var gt = require('guardtime');
-  
-  gt.conf({ signeruri: 'http://my.gateway/gt-signingservice',
-  verifieruri: 'http://my.gateway/gt-extendingservice'});
+    var gt = require('guardtime');
+    
+    gt.conf({ signeruri: 'http://my.gateway/gt-signingservice',
+    verifieruri: 'http://my.gateway/gt-extendingservice'});
 
-  gt.sign('some data', function(error, token) {
-    if(error)
-      throw error;
-    console.log('Very secure time: ', token.getRegisteredTime());
-    gt.verify('some data', token, function(error, checkflags, properties) {
-      if (error)
+    gt.sign('some data', function(error, token) {
+      if(error)
         throw error;
-      console.log('Signature OK, signed by ' + properties.location_name);
-    })
-  });
+      console.log('Very secure time: ', token.getRegisteredTime());
+      gt.verify('some data', token, function(error, checkflags, properties) {
+        if (error)
+          throw error;
+        console.log('Signature OK, signed by ' + properties.location_name);
+      })
+    });
 
 TimeSignature is exported as `guardtime.TimeSignature`. If you need to store and retrieve the TimeSignature token then use something like:
 
-  arbitraryDatabase.putBlob(id, token.getContent());
-  retrievedToken = new guardtime.TimeSignature(arbitraryDatabase.getBlob(id));
+    arbitraryDatabase.putBlob(id, token.getContent());
+    retrievedToken = new guardtime.TimeSignature(arbitraryDatabase.getBlob(id));
 
 <h2 id="module_guardtime">Module Guardtime</h2>
 
@@ -74,13 +74,13 @@ Optionally change the service configuration, all parameters are optional.
 
 Default Values:
 
-  gt.conf({
-    signeruri: 'http://stamper.guardtime.net/gt-signingservice',       // or replace with private Gateway address
-        verifieruri: 'http://verifier.guardtime.net/gt-extendingservice',  // or replace with private Gateway address
-        publicationsuri: 'http://verify.guardtime.com/gt-controlpublications.bin',  // ok for most scenarios
-        publicationsdata: ''              // automatically loaded from publicationsuri if blank or expired
-        publicationslifetime: 60*60*7     // seconds; if publicationsdata is older then it will be reloaded
-  });
+    gt.conf({
+      signeruri: 'http://stamper.guardtime.net/gt-signingservice',       // or replace with private Gateway address
+          verifieruri: 'http://verifier.guardtime.net/gt-extendingservice',  // or replace with private Gateway address
+          publicationsuri: 'http://verify.guardtime.com/gt-controlpublications.bin',  // ok for most scenarios
+          publicationsdata: ''              // automatically loaded from publicationsuri if blank or expired
+          publicationslifetime: 60*60*7     // seconds; if publicationsdata is older then it will be reloaded
+    });
 
 <h3 id="guardtime.sign"><tt>guardtime.sign(String data, function(Exception err, TimeSignature ts))</tt></h3>
 Signs the given data String, returning a TimeSignature and an exception to the callback function.
@@ -88,13 +88,13 @@ The exception is null if no errors were encountered.
 
 Example:
 
-  var data = "Hello, world!";
-  guardtime.sign(data, function(err, token) {
-    if(err)
-      throw err;
-    console.log('Signed at ' + token.getRegisteredTime());
-    //Must now record the token
-  });
+    var data = "Hello, world!";
+    guardtime.sign(data, function(err, token) {
+      if(err)
+        throw err;
+      console.log('Signed at ' + token.getRegisteredTime());
+      //Must now record the token
+    });
 
 <h3 id="guardtime.signfile"><tt>guardtime.signFile(String filename, function(Exception err, TimeSignature ts))</tt></h3>
 Calculates the hash (using SHA256) of the given file and signs it, returning a TimeSignature and an exception to the callback function.
@@ -102,26 +102,26 @@ The exception is null if no errors were encountered.
 
 Example:
 
-  var file = "/path/to/file.extension";
-  guardtime.signFile(file, function(err, token) {
-    if(err)
-      throw err;
-    console.log('Signed at ' + token.getRegisteredTime());
-    //Must now record the token
-  });
+    var file = "/path/to/file.extension";
+    guardtime.signFile(file, function(err, token) {
+      if(err)
+        throw err;
+      console.log('Signed at ' + token.getRegisteredTime());
+      //Must now record the token
+    });
 
 <h3 id="guardtime.signhash"><tt>guardtime.signHash(binary_hash, String hashalgorithm, function(Exception err, TimeSignature ts))</tt></h3>
 Signs the hash provided as a Buffer or a String, using the String hashalgorithm to determine the hashing algorithm. Hash algorithm names are OpenSSL standard names. Returns a TimeSignature and an exception to the callback function. The exception is null if no errors were encountered.
 
 Example:
 
-  var hash = getHash();
-  guardtime.signHash(hash, 'SHA256', function(err, token) {
-    if(err)
-      throw err;
-    console.log('Signed at ' + token.getRegistrationTime());
-    //Must now record the token
-  });
+    var hash = getHash();
+    guardtime.signHash(hash, 'SHA256', function(err, token) {
+      if(err)
+        throw err;
+      console.log('Signed at ' + token.getRegistrationTime());
+      //Must now record the token
+    });
 
 <h3 id="guardtime.save"><tt>guardtime.save(String filename, TimeSignature ts, function(Exception err))</tt></h3>
 Utility to save the given Time Signature to a file specified by the String filename. Asynchronous.
@@ -133,18 +133,18 @@ Returns the TimeSignature and an error to the callback function. The exception i
 
 Example:
 
-  guardtime.load("/path/to/file", function(err, token) {
-    if(err)
-      throw err;
-    //Now do something with token
-  });
+    guardtime.load("/path/to/file", function(err, token) {
+      if(err)
+        throw err;
+      //Now do something with token
+    });
 
 <h3 id="guardtime.loadsync"><tt>TimeSignature ts = guardtime.loadSync(String filename)</tt></h3>
 Same as `guardtime.load()`, but synchronous.
 
 Example:
 
-  TimeSignature ts = guardtime.loadSync("/path/to/file");
+    TimeSignature ts = guardtime.loadSync("/path/to/file");
 
 <h3 id="guardtime.verify"><tt>guardtime.verify(String data, TimeSignature ts, function(Exception err, Integer resultflags, properties))</tt></h3>
 Verifies the TimeSignature ts, checking against the hash of String data. The callback function is given an exception in the event of an error, an Integer containing result flags from the verification, and a properties structure containing details of the verified data. There is no need to validate the result flags as the necessary checks are hardcoded and an exception is returned in the case of an error. Possible result flags are presented below.  
