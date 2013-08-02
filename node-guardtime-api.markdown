@@ -1,9 +1,11 @@
 # Guardtime.js
 __Node.js Library for the Guardtime KSI Service__
 
----
+----
 
 Guardtime.js provides a wrapper for the Guardtime C Library, allowing Node.js developers to timestamp their data with Guardtime's Keyless Signature Infrastructure. This document assumes a basic understanding of KSI, for a more detailed explanation please see the [Guardtime Website](http://www.guardtime.com/signatures/technology-overview).
+
+----
 
 ## How Guardtime's technology works:
 
@@ -19,9 +21,13 @@ __This section presents a brief summary of Guardtime's KSI technology. It is by 
 
 ----
 
+### About Guardtime.js
+
 Guardtime.js provides functionality to generate signature requests and transmit them to a Gateway, returning signatures that can be recorded in a database or file. It makes use of the Node.js convention of providing a single callback as the last argument to an asynchronous function.
 
 Examples in this document assume you have a database and can insert a binary [blob](http://en.wikipedia.org/wiki/Binary_large_object) to it using a command such as 'arbitraryDb.putBlob(id, blob)' and that you can return a blob using a command such as 'arbitraryDb.getBlob(id)', where 'id' is an identifier.
+
+----
 
 ## Basic Usage:
 
@@ -48,9 +54,13 @@ gt.sign(data, function(err, token) {
 var retrievedToken = new gt.TimeSignature(arbitraryDb.getBlob(id));
 ```
 
+----
+
 ## Getting Guardtime.js
 
 The source is available from [GitHub](https://github.com/ristik/node-guardtime)
+
+----
 
 ## Installation
 
@@ -68,6 +78,8 @@ or
 ```shell
 node-gyp rebuild
 ```
+
+----
 
 ## Documentation
 
@@ -98,6 +110,8 @@ Guardtime.js has two modules - Guardtime and TimeSignature. Most developers will
   * [getContent](#getcontent)
   * [getRegisteredTime](#getregisteredtime)
   * [Other Functions](#other-functions)
+
+----
 
 <a name="guardtime" />
 ## Guardtime
@@ -479,7 +493,6 @@ __Example__
 var token = ; //Get a token
 console.log('Signed at: ' + token.getRegisteredTime());
 ```
-
 
 ----
 
