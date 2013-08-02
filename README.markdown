@@ -15,7 +15,7 @@ or
 
 Hello world with Guardtime:
 
-<code>```node
+```node
   var gt = require('guardtime');
 
   gt.sign('Hello world!', function(err, ts) {
@@ -27,7 +27,7 @@ Hello world with Guardtime:
       console.log('All ok; signed by ' + props.location_name + ' at ' + props.registered_time);
     });
   });
-</code>
+```
 
 For API documentation please refer to the [API Documentation](https://github.com/esquire-/node-guardtime/blob/master/node-guardtime-api.markdown)
 
